@@ -63,4 +63,16 @@ module.exports.routes = {
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
   'POST  /api/v1/observe-my-session':                 { action: 'observe-my-session', hasSocketFeatures: true },
 
+  //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
+  //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
+  //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
+  // Note that, in this app, these API endpoints are for ecommerce store front
+
+  'GET /api/v1/ecommerce/products': { action: 'ecommerce/product/index', csrf: false },
+  'POST /api/v1/ecommerce/orders': { action: 'ecommerce/order/create', csrf: false },
+
+
+  //TESTING
+
+  'GET /api/v1/test/testing': { action: 'test/testing', csrf: false },
 };
