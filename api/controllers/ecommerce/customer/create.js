@@ -52,8 +52,8 @@ module.exports = {
     );
     
     return this.res
-      .header("x-auth-token", token)
-      .send(_.pick(customer, ["id", "name", "email", "phone"]));
+      // .header("x-auth-token", token)
+      .send({ ..._.pick(customer, ["id", "name", "email", "phone"]), AccessToken: token});
   }
 
 };
