@@ -11,6 +11,9 @@
  * Get all orders.
  */
 module.exports = async function index(req, res) {
-  const products = await Product.find();
+  let products = await Product.find();
+  products = products.map(product => {
+    return { ...product, imageUrl: `${req.protocol}://${req.get('host')}/${product.image}` }
+  });
   return res.json(products);
 };

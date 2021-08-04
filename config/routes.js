@@ -68,6 +68,8 @@ module.exports.routes = {
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   // Note that, in this app, these API endpoints are for ecommerce store front
 
+  'POST /api/v1/ecommerce/customer/create': { action: 'ecommerce/customer/create', csrf: false },
+
   'GET /api/v1/ecommerce/products': { action: 'ecommerce/product/index', csrf: false },
   'POST /api/v1/ecommerce/orders': { action: 'ecommerce/order/create', csrf: false },
 

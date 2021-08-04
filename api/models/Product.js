@@ -16,5 +16,8 @@ module.exports = {
         image: {
             type: 'string'
         },
+    },
+    customToJSON: function() {
+        return _.omit(this, ['createdAt', 'updatedAt']);
     }
 }
