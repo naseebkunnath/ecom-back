@@ -23,13 +23,13 @@ module.exports = async function create(req, res) {
     orderItems.push({
       product: productRecord.id,
       price: productRecord.price,
-      quantity: item.quantity,
-      customer: req.authCustomer.id
+      quantity: item.quantity
     });
     orderTotal += productRecord.price * item.quantity;
   }
 
   var createdOrder = await Order.create({
+    customer: req.authCustomer.id,
     totalAmount: orderTotal,
     status: 'pending'
   }).fetch();

@@ -23,6 +23,7 @@ module.exports.policies = {
   'deliver-contact-form-message': true,
 
   'ecommerce/*': 'is-customer-logged-in',
-  'ecommerce/customer/*': true
+  'ecommerce/customer/*': true,
+  'ecommerce/product/*': true
 
 };
