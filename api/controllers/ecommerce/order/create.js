@@ -20,8 +20,13 @@ module.exports = async function create(req, res) {
       where: { id: item.id }
     });
 
+    if(!productRecord) {
+      return res.badRequest();
+    }
+
     orderItems.push({
       product: productRecord.id,
+      title: productRecord.title,
       price: productRecord.price,
       quantity: item.quantity
     });
@@ -31,6 +36,8 @@ module.exports = async function create(req, res) {
   var createdOrder = await Order.create({
     customer: req.authCustomer.id,
     totalAmount: orderTotal,
+    shippingAddress: req.body.shippingAddress,
+    paymentMethod: req.body.paymentMethod,
     status: 'pending'
   }).fetch();
 
@@ -38,5 +45,5 @@ module.exports = async function create(req, res) {
     await OrderItem.create({ ...item, order: createdOrder.id });
   }
 
-  return res.ok();
+  return res.json(_.pick(createdOrder, [ 'id' ]));
 };

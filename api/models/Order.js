@@ -8,7 +8,14 @@ module.exports = {
             type: 'string',
             required: true
         },
-        // Add a reference to OrderItem
+        shippingAddress: {
+            type: 'json',
+            required: true
+        },
+        paymentMethod: {
+            type: 'string',
+            required: true
+        },
         items: {
             collection: 'OrderItem',
             via: 'order'

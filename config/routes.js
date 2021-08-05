@@ -72,6 +72,8 @@ module.exports.routes = {
   'POST /api/v1/ecommerce/customers/login': { action: 'ecommerce/customer/login', csrf: false },
 
   'GET /api/v1/ecommerce/products': { action: 'ecommerce/product/index', csrf: false },
+  'GET /api/v1/ecommerce/orders': { action: 'ecommerce/order/index', csrf: false },
+  'GET /api/v1/ecommerce/orders/:id': { action: 'ecommerce/order/find', csrf: false },
   'POST /api/v1/ecommerce/orders': { action: 'ecommerce/order/create', csrf: false },
 
 

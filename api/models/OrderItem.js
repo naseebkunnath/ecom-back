@@ -1,5 +1,9 @@
 module.exports = {
     attributes: {
+        title: {
+            type: 'string',
+            required: true,
+        },
         quantity: {
             type: 'number',
             required: true,
