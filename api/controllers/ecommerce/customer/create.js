@@ -1,5 +1,3 @@
-const jwt = require("jsonwebtoken");
-
 module.exports = {
 
 
@@ -39,21 +37,13 @@ module.exports = {
   fn: async function (inputs) {
     let customer = inputs;
     customer.password = await sails.helpers.passwords.hashPassword(customer.password);
-    customer = await Customer.create(_.pick(customer, [ 'name', 'email', 'phone', 'password' ])).fetch();
+    customerRecord = await Customer.create(_.pick(customer, [ 'name', 'email', 'phone', 'password' ])).fetch();
   
-    const token = jwt.sign(
-      {
-        id: customer.id,
-        name: customer.name,
-        email: customer.email,
-        phone: customer.phone
-      },
-      '123123'
-    );
+    const token = await sails.helpers.customerToken.with({ customer: customerRecord });
     
     return this.res
-      // .header("x-auth-token", token)
-      .send({ ..._.pick(customer, ["id", "name", "email", "phone"]), AccessToken: token});
+      // .header("AccessToken", token)
+      .send({ ..._.pick(customerRecord, ["id", "name", "email", "phone"]), AccessToken: token});
   }
 
 };

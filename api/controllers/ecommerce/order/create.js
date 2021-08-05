@@ -12,23 +12,30 @@
  */
 module.exports = async function create(req, res) {
 
-  console.log(req.body);
+  var orderItems = [];
+  var orderTotal = 0;
+
+  for(let item of req.body.items) {
+    let productRecord = await Product.findOne({
+      where: { id: item.id }
+    });
+
+    orderItems.push({
+      product: productRecord.id,
+      price: productRecord.price,
+      quantity: item.quantity
+    });
+    orderTotal += productRecord.price * item.quantity;
+  }
 
   var createdOrder = await Order.create({
-    totalAmount: 200,
+    totalAmount: orderTotal,
     status: 'pending'
   }).fetch();
 
-  for(let item of req.body.items) {
-    await OrderItem.create({
-      quantity: item.quantity,
-      price: 100,
-      order: createdOrder.id,
-      product: item.id,
-    });
+  for(let item of orderItems) {
+    await OrderItem.create({ ...item, order: createdOrder.id });
   }
 
-  sails.log.debug('TODO: implement');
   return res.ok();
-
 };
