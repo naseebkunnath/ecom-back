@@ -55,7 +55,7 @@ module.exports = {
       await sails.helpers.passwords.checkPassword(password, customerRecord.password)
       .intercept('incorrect', 'badCombo');
 
-      const token = await sails.helpers.customerToken.with({ customer: customerRecord });
+      const token = await sails.helpers.genCustomerToken.with({ customer: customerRecord });
   
       return this.res.send(token);
   

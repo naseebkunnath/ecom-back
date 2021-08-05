@@ -106,6 +106,13 @@ will be disabled and/or hidden in the UI.
           skipAssets: true,
           fn: async function(req, res, next){
 
+            // Set authenticated customer data
+
+            const token = req.header("authorization");
+            if (token) {
+              req.authCustomer = await sails.helpers.verifCustomerToken.with({ token });
+            }
+
             var url = require('url');
 
             // First, if this is a GET request (and thus potentially a view),

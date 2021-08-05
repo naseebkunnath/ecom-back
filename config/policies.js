@@ -10,7 +10,7 @@
 
 module.exports.policies = {
 
-  //'*': 'is-logged-in',
+  '*': 'is-logged-in',
 
   // Bypass the `is-logged-in` policy for:
   'entrance/*': true,
@@ -22,6 +22,7 @@ module.exports.policies = {
   'legal/view-privacy': true,
   'deliver-contact-form-message': true,
 
- // 'store/*': true,
+  'ecommerce/*': 'is-customer-logged-in',
+  'ecommerce/customer/*': true
 
 };

@@ -23,7 +23,8 @@ module.exports = async function create(req, res) {
     orderItems.push({
       product: productRecord.id,
       price: productRecord.price,
-      quantity: item.quantity
+      quantity: item.quantity,
+      customer: req.authCustomer.id
     });
     orderTotal += productRecord.price * item.quantity;
   }

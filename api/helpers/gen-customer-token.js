@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
 
-    friendlyName: 'Customer Access Token',
+    friendlyName: 'Generate Customer Access Token',
 
 
     description: 'Generate and return access token with customer data.',

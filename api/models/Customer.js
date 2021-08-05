@@ -19,6 +19,10 @@ module.exports = {
             description: 'Securely hashed representation of the customer\'s login password.',
             protect: true
         },
+        orders: {
+            collection: 'Order',
+            via: 'customer'
+        }
     },
     customToJSON: function() {
         return _.omit(this, ['createdAt', 'updatedAt']);

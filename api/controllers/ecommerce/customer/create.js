@@ -39,7 +39,7 @@ module.exports = {
     customer.password = await sails.helpers.passwords.hashPassword(customer.password);
     customerRecord = await Customer.create(_.pick(customer, [ 'name', 'email', 'phone', 'password' ])).fetch();
   
-    const token = await sails.helpers.customerToken.with({ customer: customerRecord });
+    const token = await sails.helpers.genCustomerToken.with({ customer: customerRecord });
     
     return this.res
       // .header("AccessToken", token)

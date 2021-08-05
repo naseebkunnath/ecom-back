@@ -12,6 +12,9 @@ module.exports = {
         items: {
             collection: 'OrderItem',
             via: 'order'
-        }
+        },
+        customer: {
+            model: 'Customer'
+        },
     }
 }
